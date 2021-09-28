@@ -26,11 +26,13 @@ export const signOut = createAsyncThunk(
 export const authChecking = createAsyncThunk(
     'authSlice/authChecking',
      (_, {dispatch}) => {
-         auth.onAuthStateChanged((user) => {
-             if (user) {
-                 dispatch(setUser(auth.currentUser));
-             }
-         })
+        let user = JSON.parse(localStorage.getItem('user') || "{}");
+        dispatch(setUser(user));
+         // auth.onAuthStateChanged((user) => {
+         //     if (user) {
+         //         dispatch(setUser(auth.currentUser));
+         //     }
+         // })
     }
 )
 
@@ -40,6 +42,7 @@ const authSlice = createSlice({
 
     reducers: {
         setUser(state, action) {
+            localStorage.setItem('user', JSON.stringify(action.payload));
             state.user = action.payload;
         }
     }

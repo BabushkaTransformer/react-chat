@@ -15,16 +15,15 @@ const Chat = () => {
     const {messages, roomId} = useSelector(state => state.rooms);
     const user = useSelector(state => state.auth.user);
     const [value, setValue] = useState("");
-
+    console.log(user)
 
     const sendMessage = (e) => {
         e.preventDefault();
         let message = {
-            name: user.displayName,
+            name: user.name,
             audio: '',
             image: '',
             message: value,
-            uid: user.uid,
             time: firebase.firestore.FieldValue.serverTimestamp(),
         }
         dispatch(setMessage({roomId, message}))
@@ -35,7 +34,7 @@ const Chat = () => {
             <div className={styles.messageContainer}>
                 {messages.map(message => {
                     return (
-                        <div className={message.data.uid === user.uid ? styles.myMessage : styles.message}
+                        <div className={message.data.name === user.name ? styles.myMessage : styles.message}
                              key={message.id}>
                             <div className={styles.messageInner}>
                                 <div className={styles.name}>{message.data.name}</div>
