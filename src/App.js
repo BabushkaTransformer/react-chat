@@ -1,25 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import Sidebar from "./components/Sidebar";
+import {useEffect} from "react";
+import {fetchRooms} from "./store/slices/rooms";
+import {useDispatch, useSelector} from "react-redux";
+import {authChecking, signIn} from "./store/slices/auth";
+import Chat from "./components/Chat";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.auth.user);
+
+    useEffect(() => {
+        dispatch(fetchRooms());
+        dispatch(authChecking());
+    }, [dispatch])
+
+    return (
+        <div className="App">
+            {
+                !Object.keys(user).length ?
+                    <div className='auth'>
+                        <button onClick={() =>  dispatch(signIn())}>Зарегайся</button>
+                    </div> :
+                    <>
+                        <Sidebar/>
+                        <Chat/>
+                    </>
+            }
+        </div>
+    );
 }
 
 export default App;

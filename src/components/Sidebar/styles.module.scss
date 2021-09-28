@@ -1,0 +1,72 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30%;
+    background-color: silver;
+    height: 100vh;
+}
+
+.adding {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+
+    input {
+        border-radius: 15px;
+        border: none;
+        padding: 5px 10px;
+    }
+    button {
+        border-radius: 15px;
+        border: none;
+        padding: 5px;
+        font-size: 12px;
+        color: white;
+        background-color: chartreuse;
+        margin-left: 4px;
+    }
+}
+
+.rooms {
+    display: flex;
+    flex-direction: column;
+}
+
+.room {
+    width: 100%;
+    padding: 10px 20px;
+    color: white;
+    transition: 0.2s background-color;
+    border-radius: 10px;
+
+    &:hover {
+        background-color: lightgrey;
+    }
+}
+
+.roomActive {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: gray;
+    color: white;
+    transition: 0.2s background-color;
+    border-radius: 10px;
+}
+
+.signOut {
+    width: 100px;
+    margin: 20px auto;
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: white;
+    background-color: darkgray;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.2s background-color;
+
+    &:hover {
+        background-color: chartreuse;
+    }
+}
